@@ -1,0 +1,57 @@
+data:text/html,
+<style>
+    body {
+        background: blue;
+        color: white;
+        text-align: center;
+        font-size: xx-large;
+        margin: 2%;
+        padding: %;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    input {
+        background: blue;
+        color: white;
+        border: white 2px solid;
+        font-size: large;
+        margin: 0.2%;
+        padding: 2%;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    input:active {
+        background: white;
+        color: black;
+    }
+</style>
+<input
+    type="button"
+    value="Start"
+    onclick=" if(!isRunning) {
+             isRunning = true; timer = setInterval(function() { 
+                if(m != 0 && s == 0) mOutput.innerHTML = '0' + h + ' : ' + m + ' : 0' + s + '<br>' + ms; 
+                  else if(h != 0 && m == 0 && s == 0) mOutput.innerHTML = h + ' : 0' + m + ' : 0' + s + '<br>' + ms; 
+                  else if(s == 0) mOutput.innerHTML = '0' + h + ' : 0' + m + ' : 0' + s + '<br>' + ms; 
+                  else if(m == 0) mOutput.innerHTML = '0' + h + ' : 0' + m + ' : ' + s + '<br>' + ms; 
+                  else if(h == 0) mOutput.innerHTML = '0' + h + ' : ' + m + ' : ' + s + '<br>' + ms; 
+                else mOutput.innerHTML = h + ' : ' + m + ' : ' + s + '<br>' + ms; ms++; 
+                if(ms < 10) ms = '00' + ms; 
+                else if(ms < 100) ms = '0' + ms; 
+                if(ms == 100) 
+                s++; if(s < 10) s = '0' + s; ms = 0;  
+                if(s == 60) 
+                m++; if(m < 10) m = '0' + m; s = 0; 
+                if(m == 60) h++; 
+                if(h < 10) h = '0' + h; m = 0; 
+             }, 10) 
+ } "/>
+<input type="button" value="Stop" onclick=" stopTimer() " /> <input type="button" value="Reset" onclick=" h = m = s = ms = 0; stopTimer(); mOutput.innerHTML = ''; " />
+<p id="output"></p>
+<script>
+    h = m = s = ms = 0;
+    mOutput = document.getElementById("output");
+    isRunning = false;
+    function stopTimer() {
+        clearInterval(timer);
+        isRunning = false;
+    }
+</script>
