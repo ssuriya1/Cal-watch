@@ -1,0 +1,30 @@
+<style>
+    body {
+        background: blue;
+        text-align: center;
+    }
+    input {
+        margin: 5px;
+        padding: 20px;
+    }
+    .buttons {
+        background: blue;
+        border: 2px yellow solid;
+        color: yellow;
+    }
+    .buttons:active {
+        background: yellow;
+        color: blue;
+    }
+</style>
+<input type="text" id="input" /> `
+<script>
+    mInput = document.getElementById("input");
+    values = [9, 8, 7, "+", 6, 5, 4, "-", 3, 2, 1, "*", 0, ".", "c", "/", "="];
+    for (i = 0; i <= 16; i++) {
+        if (i % 4 == 0) document.write("<br>");
+        if (i == 14) document.write("<input type='button' value='" + values[i] + "' class='buttons' onclick='mInput.value = \"\" ' ");
+        if (i == 16) document.write("<input type='button' value='" + values[i] + "' class='buttons' onclick='mInput.value = eval(mInput.value)' ");
+        document.write("<input type='button' value='" + values[i] + "' id=' " + values[i] + " ' class='buttons' onclick='mInput.value += document.getElementById(\" " + values[i] + " \").value'>");
+    }
+</script>
